@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -eu
+
 for i in {0..2}; do
     top3[$i]=0
 done

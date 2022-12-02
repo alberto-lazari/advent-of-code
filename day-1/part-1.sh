@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -eu
+
 most=0
 
 read item
