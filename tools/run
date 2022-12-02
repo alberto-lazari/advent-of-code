@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -eu
+
+script_dir=$(dirname "$0")
+
+# retrieves the current selected language
+language=$($script_dir/lang)
+
+# runs the solution in the selected language and copies the result on the system clipboard
+# ready to be pasted on adventofcode.com
+$script_dir/languages/run-$language.sh $* | pbcopy
+
+# outputs the result, for debugging purposes
+pbpaste
+
