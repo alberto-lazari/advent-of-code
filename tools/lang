@@ -3,7 +3,7 @@ set -eu
 
 script_dir=$(dirname $0)
 
-if [[ $# > 1 ]]; then
+if [[ $# != 0 ]]; then
     if [[ $1 = '-s' ]]; then
         echo $2 > $script_dir/current-language
     fi

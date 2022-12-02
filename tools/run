@@ -6,9 +6,21 @@ script_dir=$(dirname "$0")
 # retrieves the current selected language
 language=$($script_dir/lang)
 
+part=''
+
+if [[ $# = 0 ]]; then
+    # TODO file does not exist
+    part=$(cat $script_dir/last-run-part)
+else
+    part=$1
+fi
+
+echo $part > $script_dir/last-run-part
+
 # runs the solution in the selected language and copies the result on the system clipboard
 # ready to be pasted on adventofcode.com
-$script_dir/languages/run-$language.sh $* | pbcopy
+# TODO language not yet configured
+$script_dir/languages/run-$language.sh $part | pbcopy
 
 # outputs the result, for debugging purposes
 pbpaste
