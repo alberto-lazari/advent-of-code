@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -eu
+
+script_dir=$(dirname $0)
+DAY_PATTERN='day-'
+
+[[ ! $(basename $PWD) =~ ^day-[0-9]+$ ]] && echo Error: you need to be in a ${DAY_PATTERN}n/ directory && exit 1
+
+day=$(basename $PWD | sed "s/^$DAY_PATTERN//")
+
+[[ ! -f $script_dir/user-session ]] && echo Error: you need to copy your session in tools/user-session && exit 1
+
+curl https://adventofcode.com/2022/day/$day/input --cookie "session=$(cat $script_dir/user-session)" > input
+

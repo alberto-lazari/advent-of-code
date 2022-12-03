@@ -1,6 +1,7 @@
 # Config files
 tools/current-language
 tools/last-run-part
+tools/user-session
 
 # Problems input files
 day-*/input
