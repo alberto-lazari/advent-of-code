@@ -6,3 +6,6 @@ tools/user-session
 # Problems input files
 day-*/input
 
+# Compiled binaries
+day-*/part-?
+
