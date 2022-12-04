@@ -9,3 +9,6 @@ day-*/input
 # Compiled binaries
 day-*/part-?
 
+# Log files
+day-*/*.log
+
