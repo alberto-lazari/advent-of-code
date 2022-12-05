@@ -4,8 +4,8 @@ tools/last-run-part
 tools/user-session
 
 # Compiled binaries
-day-*/part-?
+**/day-*/part-?
 
 # Log files
-day-*/*.log
+**/day-*/*.log
 
