@@ -18,8 +18,7 @@ begin
     o := integer (opponent_move) - integer ('A');
     p := integer (player_move) - integer ('X');
 
-    result := (p - o) mod 3;
-    if result < 0 then result := result + 3;
+    result := (p - o + 3) mod 3;
     if result = 2 then result := -1;
 end;
 
@@ -34,13 +33,8 @@ begin
     begin
         read (aux);
 
-        case player_move of
-            'X' : score := score + 1;
-            'Y' : score := score + 2;
-            'Z' : score := score + 3;
-        end;
-
         score := score + result (opponent_move, player_move) * 3 + 3;
+        score := score + 1 + integer (player_move) - integer ('X');
 
         read (opponent_move);
         read (aux);
