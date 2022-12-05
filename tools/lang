@@ -6,20 +6,39 @@ script_dir=$(dirname $0)
 print_help() {
     echo usage: lang [-s LANGUAGE] [-h]
     echo Shell options:
-    echo   -h  print this message
-    echo   -s  set the current language
+    echo '  -h  print this message'
+    echo '  -s  set the current language'
+}
+
+set_language() {
+    language=$1
+
+    if [[ -f $script_dir/languages/run-$language.sh ]]
+    then
+        echo $language > $script_dir/current-language
+        exit 0
+    else
+        echo Error: the selected language has not yet been configured
+        exit 1
+    fi
 }
 
 load_options() {
     while getopts :hs: flag
     do
         case "${flag}" in
-            s) echo $OPTARG > $script_dir/current-language;;
-            h) print_help;;
+            s) set_language $OPTARG;;
+            h) print_help; exit 0;;
             *) print_help; exit 1;;
         esac
     done
 }
 
-[[ $# != 0 ]] && load_options "$@" || cat $script_dir/current-language
+language=''
+
+[[ -f $script_dir/current-language ]] && language=$(cat $script_dir/current-language)
+
+load_options "$@"
+
+echo $language
 

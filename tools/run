@@ -3,16 +3,39 @@ set -eu
 
 script_dir=$(dirname "$0")
 
+input_file=input
+part=1
+
+print_help() {
+    echo 'usage: run [-dh] [-p 1|2] [-l LANGUAGE]'
+    echo Shell options:
+    echo '  -p  part of the problem to run (1 or 2)'
+    echo '  -l  language to use'
+    echo "  -d  debug mode, uses the input file 'input.debug'"
+    echo '  -h  print this message'
+}
+
+load_options() {
+    while getopts :dhl:p: flag
+    do
+        case "${flag}" in
+            d) input_file='input.debug';;
+            l) language=$OPTARG;;
+            p) part=$OPTARG;;
+            h) print_help; exit 0;;
+            *) print_help; exit 1;;
+        esac
+    done
+}
+
 # Retrieves the current selected language
 language=$($script_dir/lang)
-
-part=1
 
 if [[ $# = 0 ]]
 then
     [[ -f $script_dir/last-run-part ]] && part=$(cat $script_dir/last-run-part)
 else
-    part=$1
+    load_options "$@"
 fi
 
 echo $part > $script_dir/last-run-part
@@ -21,7 +44,7 @@ echo $part > $script_dir/last-run-part
 # ready to be pasted on adventofcode.com
 if [[ -f $script_dir/languages/run-$language.sh ]]
 then
-    $script_dir/languages/run-$language.sh $part < input | pbcopy
+    $script_dir/languages/run-$language.sh $part < $input_file | pbcopy
 else
     echo Error: the selected language has not yet been configured
     exit 1
