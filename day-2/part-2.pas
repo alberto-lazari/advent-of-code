@@ -2,7 +2,7 @@ uses crt;
 
 var
     opponent_move, player_move, aux: char;
-    score, result: integer;
+    score, result, move_score: integer;
 
 begin
     score := 0;
@@ -19,7 +19,9 @@ begin
         result := integer (player_move) - integer ('Y');
 
         score := score + result * 3 + 3;
-        score := score + 1 + (integer (opponent_move) - integer ('A') + result) mod 3;
+
+        move_score := 1 + (integer (opponent_move) - integer ('A') + result + 3) mod 3;
+        score := score + move_score;
 
         read (opponent_move);
         read (aux);
