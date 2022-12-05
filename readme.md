@@ -7,28 +7,28 @@ For the year 2022 the challenge is to solve each day with a different language, 
 "Why doing this?" For fun, obviously. Here you won't find any elegant, efficent or fast solution to the problems, only my first approaches with a lot of different esoteric languages.
 
 Here the complete list of the languages that I plan on using (in no particular order):
-[ ](C)
-[ ](C++)
-[ ](Java)
-[ ](Python)
-[ ](Ruby)
-[ ](F#)
-[ ](C#)
-[ ](JavScript)
-[ ](Typescript)
-[ ](php)
-[ ](Haskell)
-[ ](Rust)
-[ ](Go)
-[ ](Kotlin)
-[ ](Scala)
-[X](Bash)
-[ ](Elixir)
-[ ](Ocaml)
-[ ](R)
-[ ](Dart)
-[ ](Perl)
-[X](Pascal)
-[ ](Matlab)
-[ ](Objective-C)
-[ ](Erlang)
+- [ ] C
+- [ ] C++
+- [ ] Java
+- [ ] Python
+- [ ] Ruby
+- [ ] F#
+- [ ] C#
+- [ ] JavScript
+- [ ] Typescript
+- [ ] php
+- [ ] Haskell
+- [ ] Rust
+- [ ] Go
+- [ ] Kotlin
+- [ ] Scala
+- [X] Bash
+- [ ] Elixir
+- [ ] Ocaml
+- [ ] R
+- [ ] Dart
+- [ ] Perl
+- [X] Pascal
+- [ ] Matlab
+- [ ] Objective-C
+- [ ] Erlang
