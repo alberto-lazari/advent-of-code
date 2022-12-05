@@ -3,7 +3,7 @@ set -eu
 
 script_dir=$(dirname "$0")
 
-# retrieves the current selected language
+# Retrieves the current selected language
 language=$($script_dir/lang)
 
 part=1
@@ -17,7 +17,7 @@ fi
 
 echo $part > $script_dir/last-run-part
 
-# runs the solution in the selected language and copies the result on the system clipboard
+# Runs the solution in the selected language and copies the result on the system clipboard
 # ready to be pasted on adventofcode.com
 if [[ -f $script_dir/languages/run-$language.sh ]]
 then
@@ -27,6 +27,6 @@ else
     exit 1
 fi
 
-# outputs the result, for debugging purposes
+# Outputs the result, for debugging purposes
 pbpaste
 
