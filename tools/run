@@ -31,12 +31,8 @@ load_options() {
 # Retrieves the current selected language
 language=$($script_dir/lang)
 
-if [[ $# = 0 ]]
-then
-    [[ -f $script_dir/last-run-part ]] && part=$(cat $script_dir/last-run-part)
-else
-    load_options "$@"
-fi
+[[ -f $script_dir/last-run-part ]] && part=$(cat $script_dir/last-run-part)
+load_options "$@"
 
 echo $part > $script_dir/last-run-part
 
