@@ -8,7 +8,8 @@ language=$($script_dir/lang)
 
 part=1
 
-if [[ $# = 0 ]]; then
+if [[ $# = 0 ]]
+then
     [[ -f $script_dir/last-run-part ]] && part=$(cat $script_dir/last-run-part)
 else
     part=$1
@@ -18,8 +19,13 @@ echo $part > $script_dir/last-run-part
 
 # runs the solution in the selected language and copies the result on the system clipboard
 # ready to be pasted on adventofcode.com
-# TODO language not yet configured
-$script_dir/languages/run-$language.sh $part < input | pbcopy
+if [[ -f $script_dir/languages/run-$language.sh ]]
+then
+    $script_dir/languages/run-$language.sh $part < input | pbcopy
+else
+    echo Error: the selected language has not yet been configured
+    exit 1
+fi
 
 # outputs the result, for debugging purposes
 pbpaste

@@ -3,11 +3,23 @@ set -eu
 
 script_dir=$(dirname $0)
 
-if [[ $# != 0 ]]; then
-    if [[ $1 = '-s' ]]; then
-        echo $2 > $script_dir/current-language
-    fi
-else
-    cat $script_dir/current-language
-fi
+print_help() {
+    echo usage: lang [-s LANGUAGE] [-h]
+    echo Shell options:
+    echo   -h  print this message
+    echo   -s  set the current language
+}
+
+load_options() {
+    while getopts :hs: flag
+    do
+        case "${flag}" in
+            s) echo $OPTARG > $script_dir/current-language;;
+            h) print_help;;
+            *) print_help; exit 1;;
+        esac
+    done
+}
+
+[[ $# != 0 ]] && load_options "$@" || cat $script_dir/current-language
 
