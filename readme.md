@@ -25,7 +25,7 @@ Here the complete list of the languages that I plan on using (in no particular o
 - [X] Bash
 - [ ] Elixir
 - [ ] Ocaml
-- [ ] R
+- [X] R
 - [ ] Dart
 - [ ] Perl
 - [X] Pascal
