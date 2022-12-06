@@ -8,11 +8,7 @@ while (i <= length(rucksacks)) {
         elf[[j]] <- strsplit(rucksacks[i - j + 1], '')[[1]]
     }
 
-    badge <- intersect(elf[[1]], intersect(elf[[2]], elf[[3]]))
-    print(badge)
-
-    badge <- utf8ToInt(badge)
-    print(badge)
+    badge <- utf8ToInt(intersect(elf[[1]], intersect(elf[[2]], elf[[3]])))
 
     if (badge >= utf8ToInt('a')) {
         sum <- sum + badge - utf8ToInt('a') + 1
