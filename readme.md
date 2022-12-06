@@ -30,5 +30,5 @@ Here the complete list of the languages that I plan on using (in no particular o
 - [ ] Perl
 - [X] Pascal
 - [ ] Matlab
-- [ ] Objective-C
+- [ ] SQL
 - [ ] Erlang
