@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+import sys
+import xlwings
+
+part = sys.argv[1]
+input_file = sys.argv[2]
+excel_file = 'part-' + part + '.xlsx'
+
+spreadsheet = xlwings.Book(excel_file)
+
+values = list(map(lambda x: [x.replace('\n', '')], open(input_file, 'r').readlines()))
+spreadsheet.sheets['input']['A:A'].value = values
+
+result = int(spreadsheet.sheets['part-' + part]['B1'].value)
+print(result)
+
+xlwings.apps.active.kill()
+

@@ -38,9 +38,11 @@ echo $part > $script_dir/last-run-part
 
 # Runs the solution in the selected language and copies the result on the system clipboard
 # ready to be pasted on adventofcode.com
-if [[ -f $script_dir/languages/run-$language.sh ]]
+if [[ -f $script_dir/languages/run-$language ]]
 then
-    $script_dir/languages/run-$language.sh $part < $input_file | pbcopy
+    # Running the script, passing as arguments the part to run and the input file, in case
+    # some it is preferred to directly read the file for some languages
+    $script_dir/languages/run-$language $part $input_file < $input_file | pbcopy
 else
     echo Error: the selected language has not yet been configured
     exit 1

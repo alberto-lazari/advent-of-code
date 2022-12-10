@@ -13,7 +13,7 @@ print_help() {
 set_language() {
     language=$1
 
-    if [[ -f $script_dir/languages/run-$language.sh ]]
+    if [[ -f $script_dir/languages/run-$language ]]
     then
         echo $language > $script_dir/current-language
         exit 0
