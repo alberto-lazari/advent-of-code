@@ -9,3 +9,6 @@ tools/user-session
 # Log files
 **/day-*/*.log
 
+# Excel temp files
+**/~$*
+
