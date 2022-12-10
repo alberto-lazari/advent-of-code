@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -eu
+
+psql postgres -qzf part-$1.sql
+
