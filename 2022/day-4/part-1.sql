@@ -17,13 +17,10 @@ create table assignment_pairs (
     second_elf_id integer unique not null references assignments(id)
 );
 
-\! sed -e 's/\(.*\)-\(.*\),\(.*\)-\(.*\)/\1,\2\n\3,\4/' > parsed_input
-\set command cat' ':pwd'/'parsed_input
-\echo :command
+-- damned command to parse the file...
+\set command sed' '-e' '"s/\(.*\)-\(.*\),\(.*\)-\(.*\)/\1,\2\n\3,\4/"' '<' ':pwd/:input
 
-copy assignments (first_section, last_section) from program :'command'  with csv;
-
-\! rm parsed_input
+copy assignments (first_section, last_section) from program :'command' with csv;
 
 select * from assignments;
 
