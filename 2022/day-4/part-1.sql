@@ -17,11 +17,17 @@ create table assignment_pairs (
     second_elf_id integer unique not null references assignments(id)
 );
 
-insert into assignments(first_section, last_section) values
-(2, 4),
-(6, 8);
+\! sed -e 's/\(.*\)-\(.*\),\(.*\)-\(.*\)/\1,\2\n\3,\4/' > parsed_input
+\set command cat' ':pwd'/'parsed_input
+\echo :command
+
+copy assignments (first_section, last_section) from program :'command'  with csv;
+
+\! rm parsed_input
 
 select * from assignments;
+
+select * from assignment_pairs;
 
 drop schema public cascade;
 drop database part_1;
