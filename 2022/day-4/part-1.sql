@@ -22,9 +22,24 @@ create table assignment_pairs (
 
 copy assignments (first_section, last_section) from program :'command' with csv;
 
-select * from assignments;
+do $$
+declare
+    i int := 1;
+begin
+    while i <= (select count(*) from assignments) loop
+        insert into assignment_pairs (first_elf_id, second_elf_id) values
+        (i, i + 1);
 
-select * from assignment_pairs;
+        i := i + 2;
+    end loop;
+end $$;
+
+-- main query
+select count(*)
+from assignments a1, assignments a2, assignment_pairs p
+where a1.id = p.first_elf_id and a2.id = p.second_elf_id and
+    ((a1.first_section >= a2.first_section and a1.last_section <= a2.last_section) or
+    (a1.first_section <= a2.first_section and a1.last_section >= a2.last_section));
 
 drop schema public cascade;
 drop database part_1;
