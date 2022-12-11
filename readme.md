@@ -30,6 +30,6 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] Perl
 - [X] Pascal
 - [ ] Octave
-- [ ] SQL
+- [X] SQL
 - [ ] Vimscript
 
