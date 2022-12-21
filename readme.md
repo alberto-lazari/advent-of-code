@@ -27,7 +27,7 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] J
 - [X] R
 - [ ] Dart
-- [ ] Perl
+- [X] Perl
 - [X] Pascal
 - [ ] Octave
 - [X] SQL
