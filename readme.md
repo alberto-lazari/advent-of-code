@@ -13,7 +13,7 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] Python
 - [ ] Ruby
 - [ ] F#
-- [ ] Clojure
+- [X] Clojure
 - [ ] JavaScript
 - [X] Spreadsheet
 - [ ] PHP
