@@ -40,12 +40,9 @@ fi
 # Retrieves the current selected language
 language=$($script_dir/lang)
 
-if [[ $(bc -e "$(echo "$language" | wc -l) > 1") == 1 ]]
-then
-    [[ $(echo "$language" | grep default) ]] && language=$(echo "$language" | grep default | sed -e 's/ (default)//')
-else
-    eval $UPDATE_PART
-fi
+[[ $(bc -e "$(echo "$language" | wc -l) > 1") == 1 ]] && [[ $(echo "$language" | grep default) ]] && language=$(echo "$language" | grep default | sed -e 's/ (default)//')
+
+[[ $(bc -e "$(echo "$language" | wc -l) > 1") == 0 ]] && eval $UPDATE_PART
 
 load_options "$@"
 
