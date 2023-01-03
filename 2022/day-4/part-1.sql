@@ -43,4 +43,3 @@ where a1.id = p.first_elf_id and a2.id = p.second_elf_id and
 
 drop schema public cascade;
 drop database part_1;
-

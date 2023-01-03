@@ -53,4 +53,3 @@ to_free=$(bc -e "30000000 - (70000000 - $root_size)")
 least_to_free_in $root
 
 rm -rf $root
-

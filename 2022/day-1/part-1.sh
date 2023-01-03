@@ -20,4 +20,3 @@ while [[ $item != '' ]]; do
 done
 
 echo $most
-

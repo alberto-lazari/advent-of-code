@@ -48,4 +48,3 @@ for my $stack (@stacks) {
 }
 
 print "\n";
-

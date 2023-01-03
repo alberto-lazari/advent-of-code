@@ -30,4 +30,3 @@ begin
 
     writeln (score);
 end.
-

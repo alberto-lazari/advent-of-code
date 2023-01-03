@@ -36,4 +36,3 @@ size_of $root > /dev/null
 echo $computed_size
 
 rm -rf $root
-

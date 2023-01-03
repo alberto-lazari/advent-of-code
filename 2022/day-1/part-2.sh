@@ -39,4 +39,3 @@ while [[ $item != '' ]]; do
 done
 
 echo $(bc -e "${top3[0]} + ${top3[1]} + ${top3[2]}")
-

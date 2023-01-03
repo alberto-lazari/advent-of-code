@@ -21,4 +21,3 @@ while (i <= length(rucksacks)) {
 }
 
 print(sum)
-

@@ -13,4 +13,3 @@
       index)))
 
 (println (marker (clojure.string/split (read-line) #"") 14))
-

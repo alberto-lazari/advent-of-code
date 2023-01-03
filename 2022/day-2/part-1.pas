@@ -43,4 +43,3 @@ begin
 
     writeln (score);
 end.
-
