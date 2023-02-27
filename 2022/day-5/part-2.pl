@@ -15,7 +15,7 @@ while ($input[1] =~ m/[A-Z]| /) {
     for (0 .. @stacks - 1) {
         # index exactly the character representing the crane
         my $crane = $input[$_ * 4 + 1];
-        
+
         if ($crane ne ' ') {
             push @{$stacks[$_]}, $crane;
         }
