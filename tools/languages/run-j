@@ -1,0 +1,3 @@
+#!/usr/bin/env bash -eu
+
+jconsole part-$1.ijs

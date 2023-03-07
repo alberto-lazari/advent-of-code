@@ -41,6 +41,7 @@ extension_of () {
         java)           echo java;;
         c)              echo c;;
         c++)            echo cpp;;
+        j)              echo ijs;;
     esac
 }
 
@@ -60,7 +61,8 @@ language_of () {
         py)     echo python;;
         java)   echo java;;
         c)      echo c;;
-        cpp)    echo c++;
+        cpp)    echo c++;;
+        ijs)    echo j;;
     esac
 }
 
@@ -100,4 +102,3 @@ languages=$(echo "$languages" | sed -E 's/\n$//')
 load_options "$@"
 
 echo "$languages"
-
