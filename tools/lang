@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-set -eu
+#!/usr/bin/env bash -eu
 
 script_dir=$(dirname $0)
 
@@ -20,7 +19,7 @@ set_language () {
         echo $language > .lang
         exit 0
     else
-        echo Error: the selected language has not yet been configured
+        echo Error: the selected language has not yet been configured >&2
         exit 1
     fi
 }
@@ -85,7 +84,7 @@ language=''
 languages=''
 
 # Retrieve languages from the file extension
-for extension in $(ls -1q part-{1,2}.* | sed -E 's/^.*\.(.*)$/\1/' | sort -u)
+for extension in $(ls -1q part-{1,2}.* 2> /dev/null | sed -E 's/^.*\.(.*)$/\1/' | sort -u)
 do
     l=$(language_of $extension)
     if [[ $l != $language ]]
