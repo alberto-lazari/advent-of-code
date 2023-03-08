@@ -24,7 +24,7 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] Scala
 - [X] Bash
 - [ ] Elixir
-- [ ] J
+- [ ] Lua
 - [X] R
 - [ ] Dart
 - [X] Perl
