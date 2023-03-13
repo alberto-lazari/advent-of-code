@@ -42,6 +42,7 @@ extension_of () {
         c)              echo c;;
         c++)            echo cpp;;
         j)              echo ijs;;
+        vimscript)      echo vim;;
     esac
 }
 
@@ -63,6 +64,7 @@ language_of () {
         c)      echo c;;
         cpp)    echo c++;;
         ijs)    echo j;;
+        vim)    echo vimscript;;
     esac
 }
 
