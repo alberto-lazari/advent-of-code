@@ -37,29 +37,16 @@ function! s:is_visible(map, x, y)
     return a:x % last == 0 || a:y % last == 0 || s:higher_than(row[:a:y-1], tree) || s:higher_than(row[a:y+1:], tree) || s:higher_than(column[a:x+1:], tree) || s:higher_than(column[:a:x-1], tree)
 endfunction
 
-function! s:visible_map(map)
-    let last = len(a:map) - 1
-
-    let visible = []
-    for x in range(0, last)
-        call add(visible, [])
-        for y in range(0, last)
-            call add(visible[x], s:is_visible(a:map, x, y))
-        endfor
-    endfor
-
-    return visible
-endfunction
-
-function! s:visible_trees(visible_map)
+function! s:visible_trees(map)
     let visible_trees = 0
-    for row in a:visible_map
-        for is_visible in row
-            let visible_trees += is_visible
+    let last = len(a:map) - 1
+    for x in range(0, last)
+        for y in range(0, last)
+            let visible_trees += s:is_visible(a:map, x, y)
         endfor
     endfor
 
     return visible_trees
 endfunction
 
-ec s:visible_trees(s:visible_map(s:read_map()))
+ec s:visible_trees(s:read_map())
