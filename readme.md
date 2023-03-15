@@ -24,7 +24,7 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] Scala
 - [X] Bash
 - [ ] Erlang
-- [ ] Ada
+- [ ] Fortran
 - [X] R
 - [ ] Dart
 - [X] Perl
