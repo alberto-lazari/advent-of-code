@@ -23,8 +23,8 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] Kotlin
 - [ ] Scala
 - [X] Bash
-- [ ] Elixir
-- [ ] Lua
+- [ ] Erlang
+- [ ] Ada
 - [X] R
 - [ ] Dart
 - [X] Perl
