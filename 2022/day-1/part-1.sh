@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-set -eu
+#!/bin/bash -e
 
 most=0
 
@@ -8,11 +7,11 @@ while [[ $item != '' ]]; do
     calories=0
 
     while [[ $item != '' ]]; do
-        calories=$(bc -e "$calories + $item")
+        calories=$(( $calories + $item ))
         read item
     done
 
-    if [[ $(bc -e "$calories > $most") = 1 ]]; then
+    if (( $calories > $most )); then
         most=$calories
     fi
 

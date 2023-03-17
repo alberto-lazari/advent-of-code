@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-set -eu
+#!/bin/bash -e
 
 for i in {0..2}; do
     top3[$i]=0
@@ -10,32 +9,32 @@ while [[ $item != '' ]]; do
     calories=0
 
     while [[ $item != '' ]]; do
-        calories=$(bc -e "$calories + $item")
+        calories=$(( $calories + $item ))
         read item
     done
 
     top=0
     found=0
-    while [[ $(bc -e "$top <= 2") = 1 && $found = 0 ]]; do
-        if [[ $(bc -e "$calories >= ${top3[$top]}") = 1 ]]; then
+    while (( $top <= 2 )) && [[ $found = 0 ]]; do
+        if (( $calories >= ${top3[$top]} )); then
             found=1
             i=2
-            while [[ $(bc -e "$i >= $top") = 1 ]]; do
+            while (( $i >= $top )); do
                 if [[ $i = $top ]]; then
                     top3[$i]=$calories
                 else
-                    index=$(bc -e "$i - 1")
+                    index=$(( $i - 1 ))
                     top3[$i]=${top3[$index]}
                 fi
 
-                i=$(bc -e "$i - 1")
+                i=$(( $i - 1 ))
             done
         fi
 
-        top=$(bc -e "$top + 1")
+        top=$(( $top + 1 ))
     done
 
     read item
 done
 
-echo $(bc -e "${top3[0]} + ${top3[1]} + ${top3[2]}")
+echo $(( ${top3[0]} + ${top3[1]} + ${top3[2]} ))
