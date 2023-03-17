@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -eu
-
-clj -M part-$1.clj
-

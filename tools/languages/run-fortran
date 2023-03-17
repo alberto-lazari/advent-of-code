@@ -1,3 +1,0 @@
-#!/usr/bin/env bash -eu
-
-gfortran part-$1.f90 -o part-$1 > compiler.log && ./part-$1 | sed -e 's/^ //'
