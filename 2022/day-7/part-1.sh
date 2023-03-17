@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-set -eu
+#!/bin/bash -e
 
 # return the size of the passed directory
 # size = files + size_of directories, if <= 100000
@@ -11,13 +10,13 @@ size_of() {
         if [[ -d $file ]]; then
             # needed not to run a subshell
             size_of $file > .temp
-            size=$(bc -e "$size + $(cat .temp)")
+            size=$(( $size + $(cat .temp) ))
         else
-            size=$(bc -e "$size + $(cat $file)")
+            size=$(( $size + $(cat $file) ))
         fi
    done
 
-   [[ $(bc -e "$size <= 100000") == 1 ]] && computed_size=$(bc -e "$computed_size + $size")
+   (( $size <= 100000 )) && computed_size=$(( $computed_size + $size ))
    echo $size
 }
 
