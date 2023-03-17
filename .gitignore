@@ -1,14 +1,8 @@
-# Config files
-tools/current-language
-tools/last-run-part
-tools/user-session
-
 # Compiled binaries
-**/day-*/part-?
+part-?
 
 # Log files
-**/day-*/*.log
+*.log
 
 # Excel temp files
-**/~$*
-
+~$*
