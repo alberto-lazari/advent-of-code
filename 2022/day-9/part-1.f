@@ -1,121 +1,121 @@
-      module m knot
-        type knot
-          integer row, col
-        end type
-      end module
+      MODULE M KNOT
+        TYPE KNOT
+          INTEGER ROW, COL
+        END TYPE
+      END MODULE
 
-      subroutine move head (head, direction)
-        use m knot
+      SUBROUTINE MOVE HEAD (HEAD, DIRECTION)
+        USE M KNOT
 
-        type (knot) head
-        character direction
+        TYPE (KNOT) HEAD
+        CHARACTER DIRECTION
 
-        if (direction .eq. 'U') then
-          head%row = head%row - 1
-        else if (direction .eq. 'D') then
-          head%row = head%row + 1
-        else if (direction .eq. 'R') then
-          head%col = head%col + 1
-        else if (direction .eq. 'L') then
-          head%col = head%col - 1
-        end if
-      end
+        IF (DIRECTION .EQ. 'U') THEN
+          HEAD%ROW = HEAD%ROW - 1
+        ELSE IF (DIRECTION .EQ. 'D') THEN
+          HEAD%ROW = HEAD%ROW + 1
+        ELSE IF (DIRECTION .EQ. 'R') THEN
+          HEAD%COL = HEAD%COL + 1
+        ELSE IF (DIRECTION .EQ. 'L') THEN
+          HEAD%COL = HEAD%COL - 1
+        END IF
+      END
 
-      subroutine move tail (tail, head)
-        use m knot
+      SUBROUTINE MOVE TAIL (TAIL, HEAD)
+        USE M KNOT
 
-        type (knot) tail, head
+        TYPE (KNOT) TAIL, HEAD
 
-c if touching do nothing
-        if ((abs (head%col - tail%col) .le. 1) .and.
-     +      (abs (head%row - tail%row) .le. 1)) return
+C IF TOUCHING DO NOTHING
+        IF ((ABS (HEAD%COL - TAIL%COL) .LE. 1) .AND.
+     +      (ABS (HEAD%ROW - TAIL%ROW) .LE. 1)) RETURN
 
-c if they are on same row/col the other is too far
-        if (.not. (tail%col .eq. head%col))
-     +    tail%col = tail%col + sign (1, head%col - tail%col)
-        if (.not. (tail%row .eq. head%row))
-     +    tail%row = tail%row + sign (1, head%row - tail%row)
-      end
+C IF THEY ARE ON SAME ROW/COL THE OTHER IS TOO FAR
+        IF (.NOT. (TAIL%COL .EQ. HEAD%COL))
+     +    TAIL%COL = TAIL%COL + SIGN (1, HEAD%COL - TAIL%COL)
+        IF (.NOT. (TAIL%ROW .EQ. HEAD%ROW))
+     +    TAIL%ROW = TAIL%ROW + SIGN (1, HEAD%ROW - TAIL%ROW)
+      END
 
-      subroutine draw map (size, map, head, tail)
-        use m knot
+      SUBROUTINE DRAW MAP (SIZE, MAP, HEAD, TAIL)
+        USE M KNOT
 
-        integer size, map(size, size)
-        type (knot) head, tail
+        INTEGER SIZE, MAP(SIZE, SIZE)
+        TYPE (KNOT) HEAD, TAIL
 
-        do 70 i = 1, size
-          do 60 j = 1, size
-            if ((head%row .eq. i) .and. (head%col .eq. j)) then
-              write (*, '(a)', advance = 'no') 'H'
-            else if ((tail%row .eq. i) .and. (tail%col .eq. j)) then
-              write (*, '(a)', advance = 'no') 'T'
-            else if (map(i, j) .eq. 0) then
-              write (*, '(a)', advance = 'no') '.'
-            else
-              write (*, '(a)', advance = 'no') '#'
-            end if
-   60     continue
-c break the line
-          write (*, *)
-   70   continue
-      end
+        DO 70 I = 1, SIZE
+          DO 60 J = 1, SIZE
+            IF ((HEAD%ROW .EQ. I) .AND. (HEAD%COL .EQ. J)) THEN
+              WRITE (*, '(A)', ADVANCE = 'NO') 'H'
+            ELSE IF ((TAIL%ROW .EQ. I) .AND. (TAIL%COL .EQ. J)) THEN
+              WRITE (*, '(A)', ADVANCE = 'NO') 'T'
+            ELSE IF (MAP(I, J) .EQ. 0) THEN
+              WRITE (*, '(A)', ADVANCE = 'NO') '.'
+            ELSE
+              WRITE (*, '(A)', ADVANCE = 'NO') '#'
+            END IF
+   60     CONTINUE
+C BREAK THE LINE
+          WRITE (*, *)
+   70   CONTINUE
+      END
 
-      program day9 part1
-        use mknot
-c variables declaration
+      PROGRAM DAY9 PART1
+        USE MKNOT
+C VARIABLES DECLARATION
 ***********************
-c "512 ought to be enough"
-        parameter (map size = 512)
-        integer map(map size, map size), i, j
+C "512 OUGHT TO BE ENOUGH"
+        PARAMETER (MAP SIZE = 512)
+        INTEGER MAP(MAP SIZE, MAP SIZE), I, J
 
-        type (knot) head, tail
+        TYPE (KNOT) HEAD, TAIL
 
-c input variables
-        character direction
-        integer steps
+C INPUT VARIABLES
+        CHARACTER DIRECTION
+        INTEGER STEPS
 
-        integer positions
+        INTEGER POSITIONS
 
-c variables initialization
+C VARIABLES INITIALIZATION
 **************************
-c initialize map
-        do 20 i = 1, map size
-          do 10 j = 1, map size
-            map(i, j) = 0
-   10     continue
-   20   continue
-c initialize head in the center of the map
-        head%col = map size / 2
-        head%row = head%col
-c head and tail start from the same position
-        tail = head
+C INITIALIZE MAP
+        DO 20 I = 1, MAP SIZE
+          DO 10 J = 1, MAP SIZE
+            MAP(I, J) = 0
+   10     CONTINUE
+   20   CONTINUE
+C INITIALIZE HEAD IN THE CENTER OF THE MAP
+        HEAD%COL = MAP SIZE / 2
+        HEAD%ROW = HEAD%COL
+C HEAD AND TAIL START FROM THE SAME POSITION
+        TAIL = HEAD
 
-c main read loop
-        do
-          read (*, *, end = 30) direction, steps
-          do 25 i = 1, steps
-c           print *, direction
-            call move head (head, direction)
-c           if ((head%col .le. 0) .or. (head%col .gt. map size) .or.
-c    +          (head%row .le. 0) .or. (head%row .gt. map size))
-c    +        print *, 'error: head out of bounds'
-            call move tail (tail, head)
+C MAIN READ LOOP
+        DO
+          READ (*, *, END = 30) DIRECTION, STEPS
+          DO 25 I = 1, STEPS
+C           PRINT *, DIRECTION
+            CALL MOVE HEAD (HEAD, DIRECTION)
+C           IF ((HEAD%COL .LE. 0) .OR. (HEAD%COL .GT. MAP SIZE) .OR.
+C    +          (HEAD%ROW .LE. 0) .OR. (HEAD%ROW .GT. MAP SIZE))
+C    +        PRINT *, 'ERROR: HEAD OUT OF BOUNDS'
+            CALL MOVE TAIL (TAIL, HEAD)
 
-c           call draw map (map size, map, head, tail)
-            map(tail%row, tail%col) = 1
-   25     continue
-        end do
+C           CALL DRAW MAP (MAP SIZE, MAP, HEAD, TAIL)
+            MAP(TAIL%ROW, TAIL%COL) = 1
+   25     CONTINUE
+        END DO
 
-c compute result
-   30   positions = 0
+C COMPUTE RESULT
+   30   POSITIONS = 0
 
-        do 50 i = 1, map size
-          do 40 j = 1, map size
-            positions = positions + map(i, j)
-   40     continue
-   50   continue
+        DO 50 I = 1, MAP SIZE
+          DO 40 J = 1, MAP SIZE
+            POSITIONS = POSITIONS + MAP(I, J)
+   40     CONTINUE
+   50   CONTINUE
 
-        write (*, '(i0)') positions
+        WRITE (*, '(I0)') POSITIONS
 
-        stop
-      end
+        STOP
+      END
