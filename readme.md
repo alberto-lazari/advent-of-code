@@ -15,7 +15,7 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [X] Clojure
 - [X] Shell
 - [X] Vimscript
-- [ ] Fortran
+- [X] Fortran
 - [ ] C
 - [ ] C++
 - [ ] Java
