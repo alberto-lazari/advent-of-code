@@ -5,7 +5,6 @@ $addx = false;
 
 $stdin = fopen('php://stdin', 'r');
 while (!feof($stdin)) {
-
     $pixel = ($cycle - 1) % 40;
     if (($pixel >= $register - 1) && ($pixel <= $register + 1)) echo '#';
     else echo '.';
