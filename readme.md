@@ -16,6 +16,7 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [X] Shell
 - [X] Vimscript
 - [X] Fortran
+- [X] PHP
 - [ ] C
 - [ ] C++
 - [ ] Java
@@ -23,7 +24,6 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] Ruby
 - [ ] F#
 - [ ] JavaScript
-- [ ] PHP
 - [ ] Haskell
 - [ ] Rust
 - [ ] Go
