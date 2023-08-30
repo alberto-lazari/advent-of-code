@@ -1,5 +1,6 @@
 # Compiled binaries
 part-?
+build
 
 # Log files
 *.log
