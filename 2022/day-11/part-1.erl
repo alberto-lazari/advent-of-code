@@ -1,17 +1,29 @@
 -module('part-1').
 -export([start/0]).
 
-read_items(Items, {ok, [","]}) ->
-    {ok, Item} = io:fread("", "~d"),
-    io:fwrite("~w~n", [Item]),
-    [Items|Item];
+read_items({ok, [","]}, Items) ->
+    {ok, [Item]} = io:fread("", "~d"),
+    read_items(io:fread("", "~s"), Items ++ [Item]);
 
-read_items(Items, _) -> Items.
+read_items(_, Items) -> Items.
 
-spawn_monkey(Num) when Num < 4 ->
-    N = io:fread("", "Monkey ~d:"),
-    StartingItems = read_items([io:fread("", "  Starting items: ~d")], io:fread("", "~s")),
-    Operation = fun(X) -> X end,
+spawn_monkey(Num) when Num < 1 ->
+    {ok, [N]} = io:fread("", "Monkey ~d:"),
+    {_, [Item]} = io:fread("", "  Starting items: ~d"),
+    StartingItems = read_items(io:fread("", "~s"), [Item]),
+
+    {ok, [Op]} = io:fread("", " new = old ~c"),
+    {ok, [Val]} = io:fread("", "~s"),
+    Operation = fun(Old) ->
+                        Value = case Val of
+                                  "old" -> Old;
+                                  _     -> list_to_integer(Val)
+                              end,
+                        case Op of
+                            "+" -> Old + Value;
+                            "*" -> Old * Value
+                        end
+                end,
     Test = fun(X) -> X end,
     spawn(monkey, start, [N, StartingItems, Operation, Test]),
     case io:fread("", "") of
