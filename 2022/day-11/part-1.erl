@@ -24,7 +24,14 @@ spawn_monkey(Num) when Num < 1 ->
                             "*" -> Old * Value
                         end
                 end,
-    Test = fun(X) -> X end,
+    {ok, [ToTest]} = io:fread("", "  Test: divisible by ~d"),
+    {ok, [TrueMonkey]} = io:fread("", "    If true: throw to monkey ~d"),
+    {ok, [FalseMonkey]} = io:fread("", "    If false: throw to monkey ~d"),
+    Test = fun(WorryLevel) -> case WorryLevel rem ToTest of
+                                  0 -> TrueMonkey;
+                                  _ -> FalseMonkey
+                              end
+           end,
     spawn(monkey, start, [N, StartingItems, Operation, Test]),
     case io:fread("", "") of
         eof -> N;
