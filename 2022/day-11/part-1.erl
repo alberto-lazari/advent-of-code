@@ -1,4 +1,7 @@
 -module('part-1').
 -export([start/0]).
 
-start() -> io:fwrite("hello\n").
+-import(monkey, [start/3]).
+
+start() ->
+    spawn(monkey, start, [[0, 1], null, null]).
