@@ -1,5 +1,5 @@
 -module(monkey).
--export([start/3]).
+-export([start/4]).
 
-start([First | Rest], Operation, Test) ->
-    io:format("Item: ~B", First).
+start(N, StartingItems, Operation, Test) ->
+    io:fwrite("i'm monke ~w~n", [N]).

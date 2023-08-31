@@ -4,6 +4,7 @@ build
 
 # Log files
 *.log
+*.dump
 
 # Excel temp files
 ~$*
