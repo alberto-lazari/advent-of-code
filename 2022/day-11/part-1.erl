@@ -7,9 +7,9 @@ read_items({ok, [","]}, Items) ->
 
 read_items(_, Items) -> Items.
 
-spawn_monkey(Num) when Num < 1 ->
+spawn_monkeys() ->
     {ok, [N]} = io:fread("", "Monkey ~d:"),
-    {_, [Item]} = io:fread("", "  Starting items: ~d"),
+    {ok, [Item]} = io:fread("", "  Starting items: ~d"),
     StartingItems = read_items(io:fread("", "~s"), [Item]),
 
     {ok, [Op]} = io:fread("", " new = old ~c"),
@@ -32,15 +32,13 @@ spawn_monkey(Num) when Num < 1 ->
                                   _ -> FalseMonkey
                               end
            end,
+
     spawn(monkey, start, [N, StartingItems, Operation, Test]),
-    case io:fread("", "") of
-        eof -> N;
-        _ -> spawn_monkey(Num + 1)
-    end;
 
-spawn_monkey(N) -> N.
-
-spawn_monkeys() -> spawn_monkey(0).
+    case io:get_line("") of
+        eof -> N + 1;
+        _ -> spawn_monkeys()
+    end.
 
 start() ->
-    io:fwrite("~w mokeys spawned~n", [spawn_monkeys()]).
+    spawn_monkeys().
