@@ -1,7 +1,5 @@
 -module(rounds).
--export([start/2]).
-
--define(ROUNDS, 20).
+-export([start/3]).
 
 redirect_throws(Monkeys) ->
     receive
@@ -13,15 +11,15 @@ redirect_throws(Monkeys) ->
             done
     end.
 
-start(N, _) when N > ?ROUNDS ->
+start(N, _, Rounds) when N > Rounds ->
     stop;
 
-start(Round, Monkeys) ->
-    % io:fwrite("~nRound ~w:~n", [Round]),
-    maps:map(fun(N, Pid) ->
+start(N, Monkeys, Rounds) ->
+    % io:fwrite("~nRound ~w:~n", [N]),
+    maps:map(fun(_, Pid) ->
                      Pid ! inspect,
                      redirect_throws(Monkeys)
              end,
              Monkeys
      ),
-    start(Round + 1, Monkeys).
+    start(N + 1, Monkeys, Rounds).

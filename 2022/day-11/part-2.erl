@@ -1,4 +1,4 @@
--module('part-1').
+-module('part-2').
 -export([start/0]).
 
 -import(input, [starting_items/0, operation_fun/0, test_fun/0]).
@@ -8,7 +8,7 @@ spawn_monkeys(Monkeys, Self, Counter) ->
     Pid = spawn(
             monkey,
             start,
-            [ [N, starting_items(), operation_fun(), {divide, true}, test_fun(), Self, Counter] ]
+            [ [N, starting_items(), operation_fun(), {divide, false}, test_fun(), Self, Counter] ]
            ),
     NewMonkeys = maps:put(N, Pid, Monkeys),
 
@@ -21,7 +21,7 @@ start() ->
     Self = erlang:self(),
     Counter = spawn(counter, start, [Self]),
     Monkeys = spawn_monkeys(#{}, Self, Counter),
-    rounds:start(1, Monkeys, 20),
+    rounds:start(1, Monkeys, 10000),
 
     Counter ! get,
     receive

@@ -1,19 +1,23 @@
 -module(monkey).
 -export([start/1]).
 
-inspect_items([], [_, _, _, Parent, _]) ->
+inspect_items([], [_, _, _, _, Parent, _]) ->
     Parent ! no_items;
 
 % Inspect the first item
 inspect_items([Item|Rest], Args) ->
-    [N, Operation, Test, Parent, Counter] = Args,
-    Temp = Operation(Item),
-    New = trunc(Temp / 3),
-    % io:fwrite("monkey ~w inspects ~w -> ~w / 3 = ~w~n", [N, Item, Temp, New]),
-    MonkeyN = Test(New),
+    [N, Operation, {divide, Divide}, Test, Parent, Counter] = Args,
+    New = Operation(Item),
+    NewDivided = trunc(New / 3),
+    ToSend = case Divide of
+                 true -> NewDivided;
+                 false -> New
+             end,
+    % io:fwrite("monkey ~w inspects ~w -> ~w / 3 = ~w~n", [N, Item, New, NewDivided]),
+    MonkeyN = Test(ToSend),
     % Keep trace of the inspection
     Counter ! N,
-    Parent ! {MonkeyN, New},
+    Parent ! {MonkeyN, ToSend},
     inspect_items(Rest, Args).
 
 loop(Items, Args) ->
