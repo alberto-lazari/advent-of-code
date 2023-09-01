@@ -19,6 +19,7 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [X] Vimscript
 - [X] Fortran
 - [X] PHP
+- [X] Erlang
 - [ ] C
 - [ ] C++
 - [ ] Java
@@ -31,6 +32,5 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] Go
 - [ ] Kotlin
 - [ ] Scala
-- [ ] Erlang
 - [ ] Dart
 - [ ] Octave
