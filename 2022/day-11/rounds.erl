@@ -17,7 +17,7 @@ start(N, _) when N > ?ROUNDS ->
     stop;
 
 start(Round, Monkeys) ->
-    io:fwrite("~nRound ~w:~n", [Round]),
+    % io:fwrite("~nRound ~w:~n", [Round]),
     maps:map(fun(N, Pid) ->
                      Pid ! inspect,
                      redirect_throws(Monkeys)
