@@ -27,7 +27,7 @@ start() ->
     receive
         Inspections ->
             Values = maps:values(Inspections),
-            io:fwrite("~w~n", [Values]),
+            % io:fwrite("~w~n", [Values]),
             Max = lists:max(Values),
             SecondMax = lists:max(lists:delete(Max, Values)),
             io:fwrite("~w~n", [Max * SecondMax])

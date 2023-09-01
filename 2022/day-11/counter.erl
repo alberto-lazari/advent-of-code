@@ -9,7 +9,7 @@ count(Inspections, Parent) ->
                            maps:update_with(N, fun(Old) -> Old + 1 end, Inspections),
                            Parent
                           );
-                 false -> count(maps:put(N, 0, Inspections), Parent)
+                 false -> count(maps:put(N, 1, Inspections), Parent)
              end
     end.
 
