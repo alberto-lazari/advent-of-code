@@ -1,6 +1,9 @@
 -module(input).
 -export([starting_items/0, operation_fun/0, test_fun/0]).
 
+% Superior highly composite number (https://oeis.org/A002201)
+-define(GCD, 6064949221531200).
+
 % As long as there are commas there are elements to read
 read_items({ok, [","]}, Items) ->
     {ok, [Item]} = io:fread("", "~d"),
@@ -26,7 +29,7 @@ operation_fun() ->
             case Op of
                 "+" -> Old + Value;
                 "*" -> Old * Value
-            end
+            end rem ?GCD
     end.
 
 % Creates the test function, that returns the monkey to throw the item to
