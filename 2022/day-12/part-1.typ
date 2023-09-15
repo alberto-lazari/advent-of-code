@@ -1,4 +1,7 @@
 #{
+  // Avoid unexpected linebreaks and font ligatures...
+  set text(size: .01pt, font: "Arial")
+
   // Edit the variable with `sed` before compiling
   let input-file = "/input"
   let (..map, _) = read(input-file)
