@@ -14,6 +14,13 @@
     if match != none {
       let (start: col, text: char) = match
       points.insert(char, (row: row, col: col))
+
+      // Repeat because S and E could be on the same line
+      match = map.at(row).join().rev().match(regex("[SE]"))
+      if match != none {
+        (start: col, text: char) = match
+        points.insert(char, (row: row, col: col))
+      }
     }
     find-points(row: row - 1, points: points)
   }
