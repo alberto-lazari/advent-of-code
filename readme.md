@@ -25,12 +25,12 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [ ] Java
 - [ ] Python
 - [ ] Ruby
-- [ ] F#
+- [ ] OCaml
 - [ ] JavaScript
 - [ ] Haskell
 - [ ] Rust
 - [ ] Go
 - [ ] Kotlin
 - [ ] Scala
-- [ ] Dart
-- [ ] Octave
+- [ ] Typst
+- [ ] MATLAB
