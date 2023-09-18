@@ -33,33 +33,35 @@
   map.at(source.row).at(source.col) = "a"
   map.at(target.row).at(target.col) = "z"
 
-  let dijkstra(directions, queue: (source,)) = {
-    if queue.len() == 0 {
-      return directions
-    }
+  let dijkstra(directions) = {
+    let queue = (source,)
 
-    let (node, ..rest) = queue
-    let to-visit = (
-      (row: node.row + 1, col: node.col, from: "up"),
-      (row: node.row - 1, col: node.col, from: "down"),
-      (row: node.row, col: node.col + 1, from: "left"),
-      (row: node.row, col: node.col - 1, from: "right"),
-    )
-    for other in to-visit {
-      let (row: row, col: col, from: direction) = other
-      let steps = directions.at(node.row).at(node.col).steps + 1
-      if row in range(rows) and col in range(cols) and (
-        map.at(row).at(col).to-unicode() <= map.at(node.row).at(node.col).to-unicode() + 1
-      ) {
-        let old = directions.at(row).at(col)
-        if old == none or steps < old.steps {
-          rest.push( (row: row, col: col) )
-          directions.at(row).at(col) = (steps: steps, from: direction)
+    while queue.len() > 0 {
+      let (node, ..rest) = queue
+      let to-visit = (
+        (row: node.row + 1, col: node.col, from: "up"),
+        (row: node.row - 1, col: node.col, from: "down"),
+        (row: node.row, col: node.col + 1, from: "left"),
+        (row: node.row, col: node.col - 1, from: "right"),
+      )
+      for other in to-visit {
+        let (row: row, col: col, from: direction) = other
+        let steps = directions.at(node.row).at(node.col).steps + 1
+        if row in range(rows) and col in range(cols) and (
+          map.at(row).at(col).to-unicode() <= map.at(node.row).at(node.col).to-unicode() + 1
+        ) {
+          let old = directions.at(row).at(col)
+          if old == none or steps < old.steps {
+            rest.push( (row: row, col: col) )
+            directions.at(row).at(col) = (steps: steps, from: direction)
+          }
         }
       }
+
+      queue = rest
     }
 
-    dijkstra(directions, queue: (..rest))
+    directions
   }
 
   let directions = map.map(row => row.map(char => none))
