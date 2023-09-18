@@ -11,31 +11,28 @@
   let rows = map.len()
   let cols = map.at(0).len()
 
-  let find-points(row: rows - 1, points: (:)) = {
+  let find-points(row: rows - 1, points: (a: ())) = {
     if row < 0 { return points }
-    let match = map.at(row).join().match(regex("[SE]"))
-    if match != none {
-      let (start: col, text: char) = match
-      points.insert(char, (row: row, col: col))
 
-      // Repeat because S and E could be on the same line
-      match = map.at(row).join().rev().match(regex("[SE]"))
-      if match != none {
-        (start: col, text: char) = match
-        points.insert(char, (row: row, col: cols - 1 - col))
+    for col in range(cols) {
+      let char = map.at(row).at(col)
+      if char.contains(regex("[SE]")) {
+        points.insert(char, (row: row, col: col))
+      }
+      if char.contains(regex("[aS]")) {
+        points.a.push((row: row, col: col))
       }
     }
+
     find-points(row: row - 1, points: points)
   }
-  let (S: source, E: target) = find-points()
+  let (S: source, E: target, a: sources) = find-points()
 
   // Nomalize map, since coordinates are saved
   map.at(source.row).at(source.col) = "a"
   map.at(target.row).at(target.col) = "z"
 
-  let dijkstra(directions) = {
-    let queue = (source,)
-
+  let dijkstra(directions, queue: (source,)) = {
     while queue.len() > 0 {
       let (node, ..rest) = queue
       let to-visit = (
@@ -64,8 +61,18 @@
     directions
   }
 
-  let directions = map.map(row => row.map(char => none))
-  directions.at(source.row).at(source.col) = 0
-  directions = dijkstra(directions)
-  directions.at(target.row).at(target.col)
+  let empty-directions = map.map(row => row.map(char => none))
+  let min-steps = none
+  for s in sources {
+    source = s
+    let directions = empty-directions
+    directions.at(source.row).at(source.col) = 0
+
+    let steps = dijkstra(directions, queue: (source,)).at(target.row).at(target.col)
+    if min-steps == none or steps < min-steps {
+      min-steps = steps
+    }
+  }
+
+  min-steps
 }
