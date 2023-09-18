@@ -22,7 +22,7 @@
       match = map.at(row).join().rev().match(regex("[SE]"))
       if match != none {
         (start: col, text: char) = match
-        points.insert(char, (row: row, col: cols - col))
+        points.insert(char, (row: row, col: cols - 1 - col))
       }
     }
     find-points(row: row - 1, points: points)
