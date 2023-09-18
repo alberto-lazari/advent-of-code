@@ -69,7 +69,7 @@
     directions.at(source.row).at(source.col) = 0
 
     let steps = dijkstra(directions, queue: (source,)).at(target.row).at(target.col)
-    if min-steps == none or steps < min-steps {
+    if steps != none and (min-steps == none or steps < min-steps) {
       min-steps = steps
     }
   }
