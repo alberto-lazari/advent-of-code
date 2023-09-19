@@ -21,7 +21,7 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [X] PHP
 - [X] Erlang
 - [X] Typst
-- [ ] Python
+- [X] Python
 - [ ] MATLAB
 - [ ] JavaScript
 - [ ] C
