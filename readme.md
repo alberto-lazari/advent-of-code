@@ -21,16 +21,16 @@ Here is the complete list of the languages that I plan on using (in no particula
 - [X] PHP
 - [X] Erlang
 - [X] Typst
-- [ ] C
-- [ ] C++
-- [ ] Java
-- [ ] Python
-- [ ] Ruby
-- [ ] OCaml
+- [X] Python
+- [ ] MATLAB
 - [ ] JavaScript
+- [ ] C
+- [ ] OCaml
+- [ ] Java
+- [ ] Kotlin
+- [ ] C++
+- [ ] Ruby
 - [ ] Haskell
 - [ ] Rust
 - [ ] Go
-- [ ] Kotlin
 - [ ] Scala
-- [ ] MATLAB
