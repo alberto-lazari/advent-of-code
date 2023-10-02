@@ -1,3 +1,7 @@
+use std::io::{self, BufRead};
+
 fn main() {
-    println!("hello")
+    for line in io::stdin().lock().lines() {
+        println!("{}", line.unwrap());
+    }
 }
