@@ -15,7 +15,7 @@ impl Path {
     }
 }
 
-fn main() {
+fn read_paths() -> Vec<Path> {
     let mut paths: Vec<Path> = Vec::new();
 
     for line in io::stdin().lock().lines() {
@@ -41,7 +41,11 @@ fn main() {
         paths.push(path);
     }
 
-    for path in paths {
+    paths
+}
+
+fn main() {
+    for path in read_paths() {
         for point in path.points {
             println!("{0},{1}", point.x, point.y);
         }
